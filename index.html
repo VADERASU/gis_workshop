@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your map title here.</title>
+
+<!-- include your rendering library here -->
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+
+<style>
+  :root { --ink:#23211e; --muted:#6b6660; --rule:#d8d4cd; --paper:#fbfaf8; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 2rem 1.5rem 4rem;
+    background: var(--paper); color: var(--ink);
+    font: 16px/1.55 Charter, "Bitstream Charter", "Iowan Old Style", Georgia, serif;
+  }
+  main { max-width: 68ch; margin: 0 auto; }
+  h1 { font-size: 1.5rem; font-weight: 600; margin: 0 0 .25rem; letter-spacing: -.01em; }
+  .muted { color: var(--muted); }
+  .kicker { color: var(--muted); margin: 0 0 2rem; }
+
+  #map { width: 100%; position: relative; }
+  #map svg { width: 100%; height: auto; display: block; }
+  #map .leaflet-container { height: 520px; }
+
+  .tooltip {
+    position: absolute; pointer-events: none;
+    background: var(--ink); color: var(--paper);
+    padding: .4rem .55rem; border-radius: 3px;
+    font: 13px/1.35 system-ui, sans-serif; transition: opacity .12s;
+  }
+  .tooltip span { display: block; color: #c9c4bc; }
+
+  #legend { display: flex; flex-wrap: wrap; gap: .25rem 1.1rem; margin: .75rem 0 .35rem; }
+  .swatch { display: flex; align-items: center; gap: .4rem; font: 13px/1 system-ui, sans-serif; }
+  .chip { width: 15px; height: 15px; border-radius: 2px; border: 1px solid rgba(0,0,0,.12); }
+
+  #source { color: var(--muted); font-size: .8rem; margin: 0 0 2.5rem; }
+
+  .controls { display: flex; gap: .4rem; margin: 1.5rem 0 1rem; }
+  button {
+    font: 13px/1 system-ui, sans-serif; padding: .45rem .7rem;
+    background: transparent; color: var(--ink);
+    border: 1px solid var(--rule); border-radius: 3px; cursor: pointer;
+  }
+  button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+  .report { border-top: 1px solid var(--rule); padding-top: 1.25rem; font-size: .9rem; }
+  .report h2 { font-size: .95rem; margin: 0 0 .5rem; }
+  .report p { margin: 0 0 .5rem; }
+
+  .error { color: #9c4a33; white-space: pre-wrap; font: 13px/1.5 ui-monospace, monospace; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+
+<body>
+<main>
+  <h1>Map title</h1>
+  <p class="kicker">Replace this with the claim your map actually makes.</p>
+  <div id="map"></div>
+  <div id="legend"></div>
+  <p id="source"></p>
+</main>
+
+<script type="module" src="./src/app.js"></script>
+</body>
+</html>
