@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Your map title here.</title>
+<title>County map workshop</title>
 
 <!-- include your rendering library here -->
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
@@ -52,6 +52,16 @@
   .report h2 { font-size: .95rem; margin: 0 0 .5rem; }
   .report p { margin: 0 0 .5rem; }
 
+  .starter { border-top: 1px solid var(--rule); padding-top: 1.25rem; }
+  .starter h2 { font-size: 1.15rem; margin: 0 0 .5rem; }
+  .starter h3 { font-size: 1rem; margin: 1.5rem 0 .5rem; }
+  .starter p { margin: 0 0 .75rem; }
+  .starter ol { padding-left: 1.4rem; }
+  .starter li { margin-bottom: .8rem; }
+  .starter blockquote { margin: .75rem 0; padding: 1rem; background: #f0ede7; border-radius: 3px; }
+  .starter code { font-size: .85em; overflow-wrap: anywhere; }
+  .starter a { color: inherit; text-underline-offset: .15em; }
+
   .error { color: #9c4a33; white-space: pre-wrap; font: 13px/1.5 ui-monospace, monospace; }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
@@ -59,11 +69,53 @@
 
 <body>
 <main>
-  <h1>Map title</h1>
-  <p class="kicker">Replace this with the claim your map actually makes.</p>
+  <h1>County map workshop</h1>
+  <p class="kicker">Find a story in county data.</p>
   <div id="map"></div>
   <div id="legend"></div>
   <p id="source"></p>
+
+  <!-- Workshop guidance: remove this section when your finished map is ready to share. -->
+  <section class="starter" aria-labelledby="starter-title">
+    <h2 id="starter-title">Start here</h2>
+    <p>Your task is to build a map that colors US counties by a measure you choose.
+      The blank map is your starting point. Your coding agent will build it; you'll check the results.</p>
+
+    <ol>
+      <li><strong>Choose your data.</strong> Start with
+        <a href="./data/unemployment-2016-county.csv" download>unemployment in 2016</a>
+        and ask: where were rates highest? Other options are
+        <a href="./data/broadband_access.csv" download>broadband access</a>,
+        <a href="./data/mask-use-by-county.csv" download>mask use</a>, or your own county-level
+        CSV with county identification codes (FIPS).</li>
+      <li><strong>Open your coding agent in this project folder.</strong> If you're using
+        an installed Claude Code, open the editor's terminal and run <code>claude</code>.
+        Paste the prompt below into the agent. It uses unemployment and D3, one of the
+        workshop's mapping libraries; change those choices if you wish.
+        <blockquote>
+          <p>Build a county map in this starter project using D3 and
+            data/unemployment-2016-county.csv. Map the unemp column as a percentage and
+            match counties using the fips column.</p>
+          <p>Use plain JavaScript and browser ES modules. No bundler, npm install, or framework.
+            Ask before adding another dependency. Update the dataset settings, fill in the
+            map and legend functions, and connect them so the map appears.</p>
+          <p>Before writing code, explain in two sentences how you'll match the county codes
+            and preserve leading zeros. Include a legend and county names and values on hover.
+            Show missing data separately from zero. Report how many counties matched and
+            list unmatched codes. Explain the color cutoffs.</p>
+        </blockquote>
+        For a different dataset, give the agent its filename, the column to map, and the
+        header plus four real rows copied from the CSV.</li>
+      <li><strong>View and check your map.</strong> When the agent finishes, refresh this page.
+        You should see colored counties and a legend. If it stays blank, tell the agent
+        what you see and ask it to fix the problem. Compare a few county values with the CSV
+        and review any unmatched codes.</li>
+      <li><strong>Make a reporting judgment.</strong> Check the measure's meaning, units, and year.
+        Use rates for fair comparisons across population sizes. Ask the agent to try different
+        color cutoffs: does the apparent pattern change? Write a headline supported by the data,
+        then ask the agent to add it, cite the source and year, and remove these instructions.</li>
+    </ol>
+  </section>
 </main>
 
 <script type="module" src="./src/app.js"></script>
